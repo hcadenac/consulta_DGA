@@ -1,0 +1,14 @@
+USUARIOS
+
+1.
+NOMBRE: pepe pino
+EMAIL:pepe@mail.com
+PASSWORD:pepe1234
+ROL: consulta
+
+2.
+1.
+NOMBRE: lupe popa
+EMAIL:lupe@mail.com
+PASSWORD:lupe1234
+ROL: consulta
