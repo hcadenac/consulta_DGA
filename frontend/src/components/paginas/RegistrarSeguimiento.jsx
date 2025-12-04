@@ -54,7 +54,6 @@ const RegistrarSeguimiento = () => {
     fetchData();
   }, []);
 
-  
   // Lógica  en handleChange
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -84,7 +83,7 @@ const RegistrarSeguimiento = () => {
       await axios.post('http://localhost:3000/seguimientos', formData);
      
       setSuccessMsg('Seguimiento registrado correctamente..');
-      setTimeout(() => navigate('/ConsultaSeguimientos'), 1500);
+      setTimeout(() => navigate('/ConsultaDga'), 1500);
     } catch (err) {
       setErrorMsg('Error al registrar seguimiento: ' + (err.response?.data?.error || err.message));
     }

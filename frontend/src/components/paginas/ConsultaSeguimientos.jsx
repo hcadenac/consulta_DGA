@@ -187,7 +187,7 @@ const ConsultaSeguimientos = () => {
   });
 
   return (
-    <Box sx={{ marginLeft: '200px', marginTop: '64px', padding: 3 }}>
+    <Box sx={{ marginLeft: '80px', marginTop: '64px', padding: 3 }}>
       <Typography variant="h5" gutterBottom color="primary">
         LISTADO DE SEGUIMIENTOS
       </Typography>

@@ -22,6 +22,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import DashboardIcon from '@mui/icons-material/SpaceDashboard';
 import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import LockIcon from '@mui/icons-material/LoginRounded';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
@@ -54,6 +55,7 @@ const menuItems = [
   { text: 'Home', icon: <HomeWorkIcon />, path: '/Inicio', roles: ['admin', 'usuario'] },
   { text: 'Consulta DGA', icon: <ListAltIcon />, path: '/ConsultaDga', roles: ['admin', 'usuario'] },
   { text: 'Registrar DGA', icon: <PostAddIcon />, path: '/RegistrarDga', roles: ['admin'] },
+  { text: 'Registrar Seguimiento', icon: <AppRegistrationIcon />, path: '/RegistrarSeguimiento', roles: ['admin', 'usuario'] },
   { text: 'Administracion DGA', icon: <DashboardIcon />, path: '/GestionDga', roles: ['admin'] },
 ];
 
