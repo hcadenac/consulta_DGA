@@ -31,9 +31,11 @@ const RegistrarSeguimiento = () => {
     });
   const [empresas, setEmpresas] = useState([]);
   const [funcionarios, setFuncionarios] = useState([]);
+  const [nombrefuncionario, setNombrefuncionario] = useState([]);
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
+  const [razonSocial, setRazonSocial] = useState('')
 
   // Cargar empresas y funcionarios
   useEffect(() => {
@@ -52,13 +54,28 @@ const RegistrarSeguimiento = () => {
     fetchData();
   }, []);
 
+  
+  // Lógica  en handleChange
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    
+    // Actualizar el estado del formulario para todos los campos
+    setFormData(prevData => ({
+        ...prevData,
+        [name]: value,
+    }));
+
+    // Lógica específica para cuando cambia el NIT
+    if (name === 'departamento_id') {
+      const empresaSeleccionada = empresas.find(emp => emp.nit === value);
+      setRazonSocial(empresaSeleccionada.razon_social);
+    }
+    if (name === 'funcionario_id') { 
+      const nombreSeleccionado = funcionarios.find(fun => fun.cedula === value);
+      setNombrefuncionario(nombreSeleccionado.nombre);
+    }
   };
-  console.log(formData)
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccessMsg('');
@@ -66,7 +83,7 @@ const RegistrarSeguimiento = () => {
     try {
       await axios.post('http://localhost:3000/seguimientos', formData);
      
-      setSuccessMsg('Seguimiento registrado correctamente ✅');
+      setSuccessMsg('Seguimiento registrado correctamente..');
       setTimeout(() => navigate('/ConsultaSeguimientos'), 1500);
     } catch (err) {
       setErrorMsg('Error al registrar seguimiento: ' + (err.response?.data?.error || err.message));
@@ -94,9 +111,10 @@ const RegistrarSeguimiento = () => {
           <TextField
             select
             fullWidth
-            label="Empresa"
+            size="small"
+            label="NIT Empresa"
             name="departamento_id"
-            value={formData.departamento_id}
+            value={formData.nit_empresa}
             onChange={handleChange}
             margin="normal"
             required
@@ -108,10 +126,29 @@ const RegistrarSeguimiento = () => {
             ))}
           </TextField>
 
+          <TextField
+            //select
+            fullWidth
+            size="small"
+            label="Razon Social"
+            name="departamento_nombre"
+            value={razonSocial}
+            onChange={handleChange}
+            margin="normal"
+            InputProps={{ // **Importante:** deshabilitar la edición
+              readOnly: true, 
+            }}
+            variant="filled"
+            required
+          >
+            
+          </TextField>
+
           {/* Select de funcionarios */}
           <TextField
             select
             fullWidth
+            size="small"
             label="Funcionario"
             name="funcionario_id"
             value={formData.funcionario_id}
@@ -125,9 +162,26 @@ const RegistrarSeguimiento = () => {
               </MenuItem>
             ))}
           </TextField>
-
+            <TextField
+            //select
+            fullWidth
+            size="small"
+            label="Nombre Funcionario"
+            name="nombre_funcionario"
+            value={nombrefuncionario}
+            onChange={handleChange}
+            margin="normal"
+            InputProps={{ // **Importante:** deshabilitar la edición
+              readOnly: true, 
+            }}
+            variant="filled"
+            required
+          >
+            
+          </TextField>
           <TextField
             fullWidth
+            size="small"
             label="Fecha de Seguimiento"
             type="date"
             name="fecha_seguimiento"
