@@ -15,10 +15,12 @@ import {
   Typography,
   Divider,
   Button,
-  Table,        // <-- Nuevo Import
-  TableBody,    // <-- Nuevo Import
-  TableRow,     // <-- Nuevo Import
-  TableCell
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
 } from '@mui/material';
 import { generateEmpresaPDF } from '/src/components/utils/pdfGenerator';
 
@@ -43,6 +45,7 @@ export const DetallesEmpresa = ({ empresa, open, onClose }) => {
     pdf.save('empresa.pdf');
   };
 
+
    //Generacion del dialogo modal en material ui
   return (
     <Modal open={open} onClose={onClose}>
@@ -54,8 +57,31 @@ export const DetallesEmpresa = ({ empresa, open, onClose }) => {
             </Typography>
             <Divider />
             <br />
+             <TableContainer component={Paper} variant="outlined" sx={{ mt: 1 }}>
+              <Table size="small">
+                <TableBody>
+                  {Object.entries(empresa).map(([key, value]) => (
+                    <TableRow key={key}>
+                      <TableCell
+                        sx={{
+                          fontWeight: "bold",
+                          backgroundColor: "#e1edeaff",
+                          width: "40%",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {key}
+                      </TableCell>
+                      <TableCell sx={{ width: "60%", backgroundColor: "#c3eadbff" } }>
+                        {String(value) || "N/A"}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
             
-            <Typography><strong>NIT:</strong> {empresa.nit}</Typography>
+         {/*    <Typography><strong>NIT:</strong> {empresa.nit}</Typography> 
             <Typography><strong>Razón Social:</strong> {empresa.razon_social}</Typography>
             <Typography><strong>Dirección:</strong> {empresa.direccion}</Typography>
             <Typography><strong>Municipio:</strong> {empresa.municipio.nombre}</Typography>
@@ -74,7 +100,7 @@ export const DetallesEmpresa = ({ empresa, open, onClose }) => {
             <Typography><strong>Profesion:</strong> {empresa.profesion}</Typography>
             <Typography><strong>Cargo:</strong> {empresa.cargo}</Typography>
             <Typography><strong>Email Encargado:</strong> {empresa.email_encargado}</Typography>
-            <Typography><strong>Fecha Creacion DGA:</strong> {empresa.fecha_creacion}</Typography>
+            <Typography><strong>Fecha Creacion DGA:</strong> {empresa.fecha_creacion}</Typography>*/}
             
             <Divider />
             <Box mt={2} display="flex" justifyContent="space-between">

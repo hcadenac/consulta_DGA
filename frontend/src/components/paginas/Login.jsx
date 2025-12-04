@@ -1,6 +1,6 @@
 /*************
  @file        Login.jsx
- @description Componente de React que muestra tformulario para login de usuarios.
+ @description Componente de React que muestra formulario para login de usuarios.
  @author      Hugo Cadena 
  @email       hugo.cadena@cvs.gov.co
  @date        Noviembre 2025
@@ -42,11 +42,12 @@ const Login = () => {
     e.preventDefault();
     setMensaje('');
     setError(false);
+    
     try {
       const res = await axios.post('http://localhost:3000/usuarios/login', formData);
       login(res.data.token); // <- actualiza contexto
       localStorage.setItem('token', res.data.token);
-      setMensaje('Inicio de sesión exitoso');
+      setMensaje('Inicio de sesión exitoso ');
       
       // Redireccionar a una ruta protegida
       setTimeout(() => navigate('/Inicio'), 1500);

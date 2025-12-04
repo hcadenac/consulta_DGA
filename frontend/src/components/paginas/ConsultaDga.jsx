@@ -23,7 +23,7 @@ import {
   useMaterialReactTable,
 } from 'material-react-table';
 
-//import * as XLSX from 'xlsx';
+import * as XLSX from 'xlsx';
 import MapView from '/src/components/paginas/MapView';
 import { apiEmpresas } from '/src/components/utils/apiEmpresas';
 import { DetallesEmpresa } from '/src/components/modals/DetallesEmpresa';
@@ -37,7 +37,7 @@ const ConsultaDga = ({handleCoordinates }) => {
   
   //const navigate = useNavigate();
   const { data, isLoading, error, refetch } = apiEmpresas();
-  
+
   const [mapModalState, setMapModalState] = useState({
       open: false,
       coords: { lat: null, lng: null },
