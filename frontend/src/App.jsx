@@ -66,7 +66,7 @@ function App() {
                 </PrivateRoute>
               } />
               <Route path="/RegistrarSeguimiento" element={
-                <PrivateRoute roles={['admin']}>
+                <PrivateRoute roles={['admin', 'usuario']}>
                   <RegistrarSeguimiento />
                 </PrivateRoute>
               } />
